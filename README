@@ -1,0 +1,18 @@
+This is intended to be a stand alone javascript that creates a nav bar like dustin curtis has for his blogazine.  The idea is to create a logical previous, and next connection between pages much as if you were flipping through a magazine.
+
+Simply include the script:
+
+<script src='blogazine.js' type='text/javascript'></script>
+
+And then use HTML's link elements in the head of your document like so:
+<head>
+  <link href='/myNextArticleLink' rel='next' title='My Next Article Title' />
+  <link href='/myPrevArticleLink' rel='prev' title='My Previous Article Title' />
+</head>
+
+Notes:
+- Currently does not support IE6/7
+- You'll need some sort of reset for html body elements margin.  I suggest the Eric Meyers method included in the demo.css file, but feel free to roll any solution you please.
+
+Copyright 2010 Robert J Whitney
+Free to use under the MIT License
