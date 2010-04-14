@@ -1,4 +1,4 @@
-This is intended to be a stand alone javascript that creates a nav bar like dustin curtis has for his blogazine.  The idea is to create a logical previous, and next connection between pages much as if you were flipping through a magazine.
+Creates a nav bar like dustin curtis has for his blogazine.  The idea is to create a logical previous, and next connection between pages much as if you were flipping through a magazine.
 
 Simply include the script:
 
@@ -10,9 +10,10 @@ And then use HTML's link elements in the head of your document like so:
   <link href='/myPrevArticleLink' rel='prev' title='My Previous Article Title' />
 </head>
 
+Also, you'll want to employ some sort sort of reset for html body elements margin.  I suggest the Eric Meyers method (included in the demo.css file).
+
 Notes:
-- Currently does not support IE6/7
-- You'll need some sort of reset for html body elements margin.  I suggest the Eric Meyers method included in the demo.css file, but feel free to roll any solution you please.
+- Not tested for IE 7 or below.
 
 Copyright 2010 Robert J Whitney
 Free to use under the MIT License
