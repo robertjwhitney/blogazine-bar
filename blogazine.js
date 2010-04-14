@@ -6,30 +6,53 @@ Free use under the MIT License
 
 (function(){
 
-styles = 
-  "#zineNav {background: #000; color: #fff; padding: 8px 20px 26px;}" +
-  "#zineNav a {color: #666; font-size: 14px; text-decoration: none;}" +
-  "#zineNav a:hover {text-decoration: underline;}" +
-  "#zineNav #prev {height: 0;}" +
-  "#zineNav #title { color: #444;  font-size: 14px; height: 0; text-align: center; width: 100%;}" +
-  "#zineNav #next {float:right; height: 0;}";
-  
-title = "My Blogazine";
+window.BlogazineBar = {
+
+  styling: 
+    "#zineNav {background: #000; color: #fff; padding: 8px 20px 26px;}" +
+    "#zineNav a {color: #666; font-size: 14px; text-decoration: none;}" +
+    "#zineNav a:hover {text-decoration: underline;}" +
+    "#zineNav #prev {height: 0;}" +
+    "#zineNav #title { color: #444;  font-size: 14px; height: 0; text-align: center; width: 100%;}" +
+    "#zineNav #next {float:right; height: 0;}",
+
+  blog_title: "My Blogazine"
+
+};
 
 //no need to configure below here
 
-function appendStyle(styles) {
-  var css = document.createElement('style');
-  css.type = 'text/css';
+if ( document.addEventListener ) {
+  document.addEventListener("DOMContentLoaded", loaded, false);
+} else if ( window.attachEvent ) {
+  window.attachEvent("onload", loaded);
+}
 
-  if (css.styleSheet) css.styleSheet.cssText = styles;
-  else css.appendChild(document.createTextNode(styles));
+function loaded(){
+  //append styles
+  if ( BlogazineBar.styling ) {
+    var style = document.createElement("style");
 
-  document.getElementsByTagName("head")[0].appendChild(css);
-};
+    style.type = "text/css";
 
-function buildBar() {
-  linkElements = document.getElementsByTagName("link");
+    try {
+      style.appendChild( document.createTextNode( BlogazineBar.styling ) );
+    } catch (e) {
+      if ( style.styleSheet ) {
+        style.styleSheet.cssText = BlogazineBar.styling;
+      }
+    }
+    var head = document.getElementsByTagName("head")[0];
+    if( head == null ) {
+      document.body.appendChild( style );
+    } else {
+      head.appendChild( style );
+    }
+  } 
+  
+  //build bar
+  var linkElements = document.getElementsByTagName("link");
+  var i = 0;
   for (i = 0; i < linkElements.length; i++) {
     if (linkElements[i].hasAttribute("rel") && linkElements[i].rel == 'next') {
       var nextHref = linkElements[i].getAttribute("href");
@@ -48,23 +71,12 @@ function buildBar() {
       "<a href='" + prevHref + "'>&#8592;&nbsp;" + prevTitle + "</a>" +
     "</div>" +
     "<div id='title'>" +
-      title +
+      BlogazineBar.blog_title +
     "</div>" +
     "<div id='next'>" +
       "<a href='" + nextHref + "'>" + nextTitle + "&nbsp;&#8594;</a>" +
     "</div>";
   document.body.insertBefore(newdiv, document.body.firstChild);
-};
-
-if ( document.addEventListener ) {
-  document.addEventListener("DOMContentLoaded", loaded, false);
-} else if ( window.attachEvent ) {
-  window.attachEvent("onload", loaded);
+  
 }
-
-function loaded(){
-  appendStyle(styles); 
-  buildBar();
-}
-
 })();
