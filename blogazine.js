@@ -54,7 +54,13 @@ function buildBar() {
   document.body.insertBefore(newdiv, document.body.firstChild);
 };
 
-window.onload = function() { 
+if ( document.addEventListener ) {
+  document.addEventListener("DOMContentLoaded", loaded, false);
+} else if ( window.attachEvent ) {
+  window.attachEvent("onload", loaded);
+}
+
+function loaded(){
   appendStyle(styles); 
   buildBar();
-};
+}
