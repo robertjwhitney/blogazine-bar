@@ -4,6 +4,8 @@ Copyright 2010 Robert J Whitney
 Free use under the MIT License
 */
 
+(function(){
+
 styles = 
   "#zineNav {background: #000; color: #fff; padding: 8px 20px 26px;}" +
   "#zineNav a {color: #666; font-size: 14px; text-decoration: none;}" +
@@ -64,3 +66,5 @@ function loaded(){
   appendStyle(styles); 
   buildBar();
 }
+
+})();
