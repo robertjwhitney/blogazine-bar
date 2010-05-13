@@ -48,17 +48,20 @@ function loaded(){
       head.appendChild( style );
     }
   } 
-
+  var nextHref = "#";
+  var prevHref = "#";
+  var nextTitle = "";
+  var prevTitle = "";
   var linkElements = document.getElementsByTagName("link");
   var i = 0;
   for (i = 0; i < linkElements.length; i++) {
     if (linkElements[i].hasAttribute("rel") && linkElements[i].rel == 'next') {
-      var nextHref = linkElements[i].getAttribute("href");
-      var nextTitle = linkElements[i].getAttribute("title");
+      nextHref = linkElements[i].getAttribute("href");
+      nextTitle = linkElements[i].getAttribute("title") + "&nbsp;&#8594;" ;
     }
     else if (linkElements[i].hasAttribute("rel") && linkElements[i].rel == 'prev') {
-      var prevHref = linkElements[i].getAttribute("href");
-      var prevTitle = linkElements[i].getAttribute("title");
+      prevHref = linkElements[i].getAttribute("href");
+      prevTitle = "&#8592;&nbsp;" + linkElements[i].getAttribute("title") ;
     }
   }
   
@@ -75,13 +78,13 @@ function loaded(){
   var bar = create(
     "<div id='zineNav'>" +
       "<div id='prev'>" +
-        "<a href='" + prevHref + "'>&#8592;&nbsp;" + prevTitle + "</a>" +
+        "<a href='" + prevHref + "'>" + prevTitle + "</a>" +
       "</div>" +
       "<div id='title'>" +
         BlogazineBar.blog_title +
       "</div>" +
       "<div id='next'>" +
-        "<a href='" + nextHref + "'>" + nextTitle + "&nbsp;&#8594;</a>" +
+        "<a href='" + nextHref + "'>" + nextTitle + "</a>" +
       "</div>" +
     "</div>"
   );
